@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikola Todorov - About Me</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #64ffda;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            padding: 0.3rem 0.8rem;
+            background: transparent;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            color: #64ffda;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: rgba(100, 255, 218, 0.1);
+            border-color: #64ffda;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #64ffda;
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-2px);
+        }
+
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            padding: 4rem 0;
+        }
+
+        .about-content {
+            background: rgba(15, 15, 35, 0.8);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            animation: slideInUp 0.8s ease;
+            border: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #64ffda;
+            color: #0f0f23;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .close-btn:hover {
+            background: #45a29e;
+            transform: scale(1.1);
+        }
+
+        .about-content h2 {
+            color: #64ffda;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #b0b0b0;
+            line-height: 1.8;
+        }
+
+        .skills-section {
+            margin-top: 3rem;
+        }
+
+        .skills-section h3 {
+            color: #64ffda;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, #64ffda, #45a29e);
+            color: #0f0f23;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 600;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+        }
+
+        .experience-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .experience-section h3 {
+            color: #64ffda;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .experience-item {
+            background: rgba(100, 255, 218, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #64ffda;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateX(10px);
+        }
+
+        .experience-item h4 {
+            color: #64ffda;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .duration {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            text-align: center;
+            border: 2px solid rgba(100, 255, 218, 0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(100, 255, 218, 0.2);
+            border-color: #64ffda;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-left {
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .about-content {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            .about-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: rgba(100, 255, 218, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="nav-left">
+                <div class="logo" data-en="Nikola Todorov" data-mk="Никола Тодоров" >Nikola Todorov</div>
+                <div class="language-switcher">
+                    <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="switchLanguage('mk')">MK</button>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" data-en="Home" data-mk="Дома">Home</a></li>
+                <li><a href="about.html" class="active" data-en="About" data-mk="За мене">About</a></li>
+                <li><a href="contact.html" data-en="Contact" data-mk="Контакт">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="about-content">
+                <button class="close-btn" onclick="goBack()" title="Close">&times;</button>
+                <h2 data-en="About Me" data-mk="За мене">About Me</h2>
+                <p data-en="I am a student at the Faculty of Computer Science and Engineering (FINKI), where I am actively pursuing education in the field of information technology. My interests range from web and mobile applications to artificial intelligence and information systems security. I am always ready for new challenges, I work on projects that help me apply the knowledge I have gained, and I constantly strive for professional and personal development." data-mk="Јас сум студент на Факултетот за информатички науки и компјутерско инженерство (ФИНКИ), каде што активно се образувам во областа на информациските технологии. Моите интереси се движат од веб и мобилни апликации до вештачка интелигенција и безбедност на информациски системи. Секогаш сум подготвен за нови предизвици, работам на проекти кои ми помагаат да го применам стекнатото знаење и постојано се стремам кон професионален и личен развој.">
+                   I am a student at the Faculty of Computer Science and Engineering (FINKI), where I am actively pursuing education in the field of information technology. My interests range from web and mobile applications to artificial intelligence and information systems security. I am always ready for new challenges, I work on projects that help me apply the knowledge I have gained, and I constantly strive for professional and personal development.
+                </p>
+              
+                
+                
+                <div class="skills-section">
+                      <h3 data-en="Technical Skills" data-mk="Технички Вештини">Technical Skills</h3>
+                       <div class="skills">
+                         <div class="skill-item" data-en="HTML5 & CSS3" data-mk="HTML5 & CSS3">HTML5 & CSS3</div>
+                          <div class="skill-item" data-en="Java SpringBoot" data-mk="Java & Springboot">Java & Springboot</div>
+                          <div class="skill-item" data-en="C# & ASP .net Core" data-mk="C# & ASP .net Core">C# & ASP .net Core</div>
+                          <div class="skill-item" data-en="Git & GitHub" data-mk="Git & GitHub">Git & GitHub</div>
+                          <div class="skill-item" data-en="Python & Django" data-mk="Python & Django">Python & Django</div>
+                    <div class="skill-item" data-en="SQL & Databases" data-mk="SQL & Databases">SQL & Databases</div>
+                 </div>
+                </div>
+
+
+                
+
+                <div style="text-align: center;">
+                    <a href="index.html" class="back-btn" data-en="Back to Home" data-mk="Назад кон Почетна">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+       
+        let currentLanguage = 'en';
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[onclick="switchLanguage('${lang}')"]`).classList.add('active');
+            
+            
+            document.querySelectorAll('[data-en][data-mk]').forEach(element => {
+                if (lang === 'en') {
+                    element.textContent = element.getAttribute('data-en');
+                } else {
+                    element.textContent = element.getAttribute('data-mk');
+                }
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = JSON.parse(window.localStorage?.getItem('preferredLanguage') || '"en"');
+            switchLanguage(savedLang);
+        });
+
+        function goBack() {
+            window.history.back();
+        }
+        
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        
+        setInterval(createParticle, 300);
+        
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+    </script>
+</body>
+</html>

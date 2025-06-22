@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #64ffda;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            padding: 0.3rem 0.8rem;
+            background: transparent;
+            border: 1px solid rgba(100, 255, 218, 0.3);
+            color: #64ffda;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .lang-btn:hover,
+        .lang-btn.active {
+            background: rgba(100, 255, 218, 0.1);
+            border-color: #64ffda;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #e0e0e0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #64ffda;
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateY(-2px);
+        }
+
+        main {
+            margin-top: 80px;
+            min-height: calc(100vh - 80px);
+            padding: 4rem 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            background: rgba(15, 15, 35, 0.8);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            animation: slideInLeft 0.8s ease;
+        }
+
+        .contact-form {
+            background: rgba(15, 15, 35, 0.8);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            animation: slideInRight 0.8s ease;
+        }
+
+        h2 {
+            color: #64ffda;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: rgba(100, 255, 218, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(100, 255, 218, 0.1);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #64ffda, #45a29e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #0f0f23;
+            flex-shrink: 0;
+        }
+
+        .contact-details h3 {
+            color: #64ffda;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: #b0b0b0;
+        }
+
+        .contact-details a {
+            color: #64ffda;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: #45a29e;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #64ffda;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(100, 255, 218, 0.05);
+            border: 2px solid rgba(100, 255, 218, 0.2);
+            border-radius: 10px;
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #64ffda;
+            background: rgba(100, 255, 218, 0.1);
+            box-shadow: 0 0 20px rgba(100, 255, 218, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #64ffda, #45a29e);
+            color: #0f0f23;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(100, 255, 218, 0.2);
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: rgba(100, 255, 218, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64ffda;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(100, 255, 218, 0.3);
+            padding: 8px;
+        }
+
+        .social-link:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(100, 255, 218, 0.3);
+        }
+
+        .social-link svg {
+            width: 24px;
+            height: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover svg {
+            transform: scale(1.1);
+        }
+
+        /* Individual social media icons styling */
+        .social-link.github svg {
+            fill: #64ffda;
+        }
+
+        .social-link.github:hover svg {
+            fill: #ffffff;
+        }
+
+        .social-link.facebook svg {
+            fill: #64ffda;
+        }
+
+        .social-link.facebook:hover svg {
+            fill: #1877f2;
+        }
+
+        .back-btn {
+            display: inline-block;
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+            text-align: center;
+            border: 2px solid rgba(100, 255, 218, 0.3);
+        }
+
+        .back-btn:hover {
+            background: rgba(100, 255, 218, 0.2);
+            border-color: #64ffda;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.3);
+        }
+
+        .success-message {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            display: none;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-info,
+            .contact-form {
+                padding: 2rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .nav-left {
+                gap: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: rgba(100, 255, 218, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="nav-left">
+                <div class="logo" data-en="Nikola Todorov" data-mk="Никола Тодоров" >Nikola Todorov</div>
+                <div class="language-switcher">
+                    <button class="lang-btn active" onclick="switchLanguage('en')">EN</button>
+                    <button class="lang-btn" onclick="switchLanguage('mk')">MK</button>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" data-en="Home" data-mk="Дома">Home</a></li>
+                <li><a href="about.html" data-en="About" data-mk="За мене">About</a></li>
+                <li><a href="contact.html" class="active" data-en="Contact" data-mk="Контакт">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2 data-en="Get In Touch" data-mk="Стапете во контакт">Get In Touch</h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h3 data-en="Email" data-mk="Емаил">Email</h3>
+                            <p><a href="mailto:nikolatodorov623@gmail.com">nikolatodorov623@gmail.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <h3 data-en="Phone" data-mk="Телефон">Phone</h3>
+                            <p><a href="tel:+38972687296">+389 72 687 296</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h3 data-en="Location" data-mk="Локација">Location</h3>
+                            <p data-en="Skopje, North Macedonia" data-mk="Скопје, Северна Македонија">Skopje, North Macedonia</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div class="contact-details">
+                            <h3 data-en="Availability" data-mk="Достапност">Availability</h3>
+                            <p data-en="Always available" data-mk="Секогаш достапен">Always available</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://github.com/Nikola-Todorov?tab=overview&from=2025-06-01&to=2025-06-22" class="social-link github" title="GitHub">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M12 0.5C5.7 0.5 0.5 5.7 0.5 12c0 5.1 3.3 9.4 7.8 10.9 0.6 0.1 0.8-0.2 0.8-0.5 0-0.3 0-1 0-2-3.2 0.7-3.8-1.5-3.8-1.5-0.5-1.3-1.2-1.7-1.2-1.7-1-0.7 0.1-0.7 0.1-0.7 1.1 0.1 1.7 1.1 1.7 1.1 1 1.7 2.6 1.2 3.2 0.9 0.1-0.7 0.4-1.2 0.7-1.5-2.5-0.3-5.1-1.2-5.1-5.5 0-1.2 0.4-2.2 1.1-3 -0.1-0.3-0.5-1.4 0.1-3 0 0 0.9-0.3 3.1 1.1 0.9-0.2 1.8-0.4 2.8-0.4s1.9 0.1 2.8 0.4c2.2-1.4 3.1-1.1 3.1-1.1 0.6 1.6 0.2 2.7 0.1 3 0.7 0.8 1.1 1.8 1.1 3 0 4.3-2.6 5.2-5.1 5.5 0.4 0.4 0.8 1.1 0.8 2.2 0 1.6 0 2.9 0 3.3 0 0.3 0.2 0.6 0.8 0.5C20.2 21.4 23.5 17.1 23.5 12 23.5 5.7 18.3 0.5 12 0.5z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/nikola__todorov/" class="social-link instagram" title="Instagram">
+                            <svg viewBox="0 0 80 80">
+                                <defs>
+                                    <linearGradient id="instagramGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#833ab4"/>
+                                        <stop offset="50%" style="stop-color:#fd1d1d"/>
+                                        <stop offset="100%" style="stop-color:#fcb045"/>
+                                    </linearGradient>
+                                </defs>
+                                <rect x="0" y="0" width="80" height="80" rx="20" ry="20" fill="url(#instagramGradient)" stroke="none"/>
+                                <circle cx="40" cy="40" r="18" fill="none" stroke="white" stroke-width="3"/>
+                                <circle cx="40" cy="40" r="6" fill="white"/>
+                                <circle cx="58" cy="22" r="4" fill="white"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.facebook.com/nikola.todorov.547" class="social-link facebook" title="Facebook">
+                            <svg viewBox="0 0 24 24" width="24" height="24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <a href="index.html" class="back-btn" data-en="Back to Home" data-mk="Назад кон Дома">Back to Home</a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2 data-en="Send Message" data-mk="Испрати порака">Send Message</h2>
+                    
+                    <div class="success-message" id="successMessage">
+                        <span data-en="Thank you! Your message has been sent successfully." data-mk="Ви благодарам! Вашата порака е успешно испратена.">Thank you! Your message has been sent successfully.</span>
+                    </div>
+
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name" data-en="Your Name" data-mk="Вашето име">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" data-en="Your Email" data-mk="Вашиот емаил">Your Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject" data-en="Subject" data-mk="Предмет">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" data-en="Your Message" data-mk="Вашата порака">Your Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <span data-en="Send Message" data-mk="Испрати порака">Send Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        
+        let currentLanguage = 'en';
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+           
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[onclick="switchLanguage('${lang}')"]`).classList.add('active');
+            
+            
+            document.querySelectorAll('[data-en][data-mk]').forEach(element => {
+                if (lang === 'en') {
+                    element.textContent = element.getAttribute('data-en');
+                } else {
+                    element.textContent = element.getAttribute('data-mk');
+                }
+            });
+        }
+
+       
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = 'en'; // Removed localStorage usage
+            switchLanguage(savedLang);
+        });
+
+        
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+           
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            
+           
+            event.target.reset();
+            
+           
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+            
+            
+            console.log('Form submitted:', data);
+            //tuka se prakja do server , koa kje se hosta TODO napravi
+        }
+
+        
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 6 + 's';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        
+        setInterval(createParticle, 300);
+
+        
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        
+        document.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.style.transform = 'scale(1.02)';
+            });
+            
+            input.addEventListener('blur', () => {
+                input.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
