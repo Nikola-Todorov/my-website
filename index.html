@@ -17,6 +17,7 @@
             color: #e0e0e0;
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
@@ -42,18 +43,22 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         .nav-left {
             display: flex;
             align-items: center;
-            gap: 2rem;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: bold;
             color: #64ffda;
+            white-space: nowrap;
         }
 
         .language-switcher {
@@ -71,6 +76,7 @@
             transition: all 0.3s ease;
             font-size: 0.8rem;
             font-weight: 500;
+            min-width: 40px;
         }
 
         .lang-btn:hover,
@@ -82,7 +88,8 @@
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -93,6 +100,7 @@
             position: relative;
             padding: 0.5rem 1rem;
             border-radius: 25px;
+            white-space: nowrap;
         }
 
         .nav-links a:hover,
@@ -117,6 +125,9 @@
             flex-direction: column;
             align-items: center;
             animation: fadeInUp 1s ease;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .profile-image {
@@ -141,6 +152,7 @@
             font-size: 3.5rem;
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease 0.3s both;
+            word-break: break-word;
         }
 
         .home-content .subtitle {
@@ -156,6 +168,16 @@
             margin: 0 auto 2rem;
             opacity: 0.8;
             animation: fadeInUp 1s ease 0.9s both;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 1.2s both;
         }
 
         .cta-button {
@@ -169,8 +191,8 @@
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             border: 2px solid rgba(100, 255, 218, 0.3);
-            animation: fadeInUp 1s ease 1.2s both;
-            margin: 0 1rem;
+            white-space: nowrap;
+            text-align: center;
         }
 
         .cta-button:hover {
@@ -202,27 +224,6 @@
             }
         }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                gap: 1rem;
-            }
-
-            .home-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .home-content .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .cta-button {
-                margin: 0.5rem;
-                display: block;
-                margin-bottom: 1rem;
-            }
-        }
-
-        
         .particle {
             position: fixed;
             width: 4px;
@@ -250,6 +251,250 @@
                 opacity: 0;
             }
         }
+
+        
+        @media (max-width: 400px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            nav {
+                padding: 0.75rem 0;
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .nav-left {
+                width: 100%;
+                justify-content: space-between;
+                gap: 1rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            .nav-links a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            main {
+                margin-top: 120px;
+                padding: 1rem 0;
+            }
+            
+            .profile-image {
+                width: 120px;
+                height: 120px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .home-content h1 {
+                font-size: 2rem;
+                margin-bottom: 0.75rem;
+                line-height: 1.2;
+            }
+            
+            .home-content .subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .home-content .description {
+                font-size: 0.95rem;
+                padding: 0 10px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 0.75rem;
+                width: 100%;
+                padding: 0 10px;
+            }
+            
+            .cta-button {
+                width: 100%;
+                padding: 0.75rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        
+        @media (min-width: 401px) and (max-width: 600px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 0.75rem 0;
+            }
+            
+            .nav-left {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                gap: 0.75rem;
+            }
+            
+            main {
+                margin-top: 110px;
+                padding: 1.5rem 0;
+            }
+            
+            .profile-image {
+                width: 150px;
+                height: 150px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .home-content h1 {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            .home-content .subtitle {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .home-content .description {
+                font-size: 1rem;
+                margin-bottom: 1.75rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .cta-button {
+                width: 100%;
+                padding: 0.875rem 1.5rem;
+            }
+        }
+        
+       
+        @media (min-width: 601px) and (max-width: 768px) {
+            nav {
+                gap: 1.5rem;
+            }
+            
+            .nav-left {
+                gap: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            main {
+                margin-top: 90px;
+            }
+            
+            .profile-image {
+                width: 175px;
+                height: 175px;
+            }
+            
+            .home-content h1 {
+                font-size: 3rem;
+            }
+            
+            .home-content .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .cta-buttons {
+                gap: 1rem;
+            }
+            
+            .cta-button {
+                padding: 0.875rem 1.75rem;
+            }
+        }
+        
+        
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .home-content h1 {
+                font-size: 3.2rem;
+            }
+            
+            .home-content .subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .profile-image {
+                width: 180px;
+                height: 180px;
+            }
+        }
+        
+      
+        @media (min-width: 1025px) {
+            nav {
+                padding: 1.25rem 0;
+            }
+            
+            .nav-left {
+                gap: 2.5rem;
+            }
+            
+            .nav-links {
+                gap: 2rem;
+            }
+        }
+        
+        
+        @media (max-width: 768px) and (orientation: landscape) {
+            main {
+                margin-top: 80px;
+                min-height: auto;
+                padding: 1rem 0;
+            }
+            
+            .profile-image {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 1rem;
+            }
+            
+            .home-content h1 {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+            
+            .home-content .subtitle {
+                font-size: 1rem;
+                margin-bottom: 1rem;
+            }
+            
+            .home-content .description {
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: row;
+                gap: 1rem;
+            }
+            
+            .cta-button {
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -270,8 +515,6 @@
         </nav>
     </header>
 
-
-
     <main>
         <div class="container">
             <div class="home-content">
@@ -280,12 +523,12 @@
                 <p class="subtitle" data-en="Student at FINKI" data-mk="Студент на ФИНКИ">Student at FINKI</p>
 
                 <p class="description" 
-                data-en="А Computer Science student at FINKI, passionate about technology, software development, and building innovative digital solutions that make a real impact." 
+                data-en="A Computer Science student at FINKI, passionate about technology, software development, and building innovative digital solutions that make a real impact." 
                  data-mk="Студент на софтверско инженерство и информациски системи на ФИНКИ, страстен за технологијата, софтверскиот развој и креирањето на иновативни дигитални решенија кои имаат вистинско влијание.">
                  I am a Computer Science student at FINKI, passionate about technology, software development, and building innovative digital solutions that make a real impact.
                 </p>
 
-                <div>
+                <div class="cta-buttons">
                     <a href="about.html" class="cta-button" data-en="Learn More About Me" data-mk="Дознајте повеќе за мене">Learn More About Me</a>
                     <a href="contact.html" class="cta-button" data-en="Get In Touch" data-mk="Стапете во контакт">Get In Touch</a>
                 </div>
@@ -294,18 +537,15 @@
     </main>
  
     <script>
-        
         let currentLanguage = 'en';
 
         function switchLanguage(lang) {
             currentLanguage = lang;
             
-            
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
             document.querySelector(`[onclick="switchLanguage('${lang}')"]`).classList.add('active');
-            
             
             document.querySelectorAll('[data-en][data-mk]').forEach(element => {
                 if (lang === 'en') {
@@ -315,17 +555,14 @@
                 }
             });
             
-            
             localStorage.setItem('preferredLanguage', lang);
         }
 
-        
         document.addEventListener('DOMContentLoaded', () => {
             const savedLang = localStorage.getItem('preferredLanguage') || 'en';
             switchLanguage(savedLang);
         });
 
-        
         function createParticle() {
             const particle = document.createElement('div');
             particle.className = 'particle';
@@ -339,10 +576,8 @@
             }, 6000);
         }
 
-        
         setInterval(createParticle, 300);
 
-        
         let lastScrollTop = 0;
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
